@@ -4,6 +4,7 @@ import type { Application } from '../types'
 export const applications: Application[] = [
   {
     id: 'app-001',
+    userId: 'user-001',
     opportunityId: 'opp-001',
     studentName: 'Demo Student',
     status: 'Submitted',
@@ -12,6 +13,7 @@ export const applications: Application[] = [
   },
   {
     id: 'app-002',
+    userId: 'user-001',
     opportunityId: 'opp-002',
     studentName: 'Demo Student',
     status: 'Draft',
@@ -20,6 +22,7 @@ export const applications: Application[] = [
   },
   {
     id: 'app-003',
+    userId: 'user-001',
     opportunityId: 'opp-003',
     studentName: 'Demo Student',
     status: 'Under Review',

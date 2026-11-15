@@ -1,21 +1,39 @@
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { opportunities } from '../data/opportunities'
+import { storeToRefs } from 'pinia'
+import { useOpportunityStore } from '../stores/opportunity'
 import OpportunityGrid from '../components/OpportunitiesGrid.vue'
 
 const router = useRouter()
+const opportunityStore = useOpportunityStore()
+
+// Extract reactive state from Pinia
+const {
+  opportunities,
+  loading,
+  error,
+  isEmpty,
+  hasData,
+} = storeToRefs(opportunityStore)
+
 const searchQuery = ref('')
 
+// Fetch opportunities from JSON Server
+onMounted(() => {
+  opportunityStore.fetchOpportunities()
+})
+
+// Filter opportunities
 const filteredOpportunities = computed(() => {
   const query = searchQuery.value.trim().toLowerCase()
 
   if (!query) {
-    return opportunities
+    return opportunities.value
   }
 
-  return opportunities.filter((opportunity) => {
+  return opportunities.value.filter((opportunity) => {
     return (
       opportunity.title.toLowerCase().includes(query) ||
       opportunity.provider.toLowerCase().includes(query) ||
@@ -28,6 +46,10 @@ const filteredOpportunities = computed(() => {
 function viewDetails(id: string) {
   router.push(`/opportunities/${id}`)
 }
+
+function retryLoading() {
+  opportunityStore.fetchOpportunities()
+}
 </script>
 
 <template>
@@ -38,6 +60,7 @@ function viewDetails(id: string) {
       <p>Discover scholarships, competitions, and more.</p>
     </header>
 
+    <!-- Search -->
     <input
       v-model="searchQuery"
       type="search"
@@ -46,14 +69,44 @@ function viewDetails(id: string) {
       class="search-input"
     />
 
-    <p class="results-count">
-      {{ filteredOpportunities.length }} opportunities found
-    </p>
+    <!-- Loading State -->
+    <div v-if="loading" class="state-message">
+      <p>Loading opportunities...</p>
+    </div>
 
-    <OpportunityGrid
-      :opportunities="filteredOpportunities"
-      @view-details="viewDetails"
-    />
+    <!-- Error State -->
+    <div v-else-if="error" class="state-message error-state">
+      <p>{{ error }}</p>
+      <button type="button" @click="retryLoading">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Empty State -->
+    <div v-else-if="isEmpty" class="state-message">
+      <p>No opportunities available yet.</p>
+    </div>
+
+    <!-- Success State -->
+    <section v-else-if="hasData">
+      <p class="results-count">
+        {{ filteredOpportunities.length }} opportunities found
+      </p>
+
+      <div
+        v-if="filteredOpportunities.length === 0"
+        class="state-message"
+      >
+        <p>No matching opportunities found.</p>
+        <p>Try another search keyword.</p>
+      </div>
+
+      <OpportunityGrid
+        v-else
+        :opportunities="filteredOpportunities"
+        @view-details="viewDetails"
+      />
+    </section>
   </main>
 </template>
 
@@ -104,5 +157,28 @@ h1 {
   margin-bottom: 20px;
   color: #64748b;
   font-size: 14px;
+}
+
+.state-message {
+  padding: 30px;
+  margin-top: 20px;
+  text-align: center;
+  color: #64748b;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.error-state {
+  color: #dc2626;
+}
+
+.error-state button {
+  padding: 10px 20px;
+  margin-top: 12px;
+  color: white;
+  background: #2878ff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
 </style>

@@ -1,54 +1,132 @@
-# frontend
+# ScholarTrack – Frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+ScholarTrack is a student opportunity discovery and application platform. It helps students explore scholarships, competitions, fellowships, internships, and research opportunities, view opportunity details, and submit applications.
 
-## Recommended IDE Setup
+## Technology Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- **Frontend:** Vue 3, TypeScript, Vite
+- **Routing:** Vue Router
+- **State Management:** Pinia
+- **Styling:** CSS
+- **Mock REST API:** JSON Server
+- **Data Storage:** `db.json`
 
 ## Project Setup
 
-```sh
+### 1. Install Dependencies
+
+Navigate to the frontend directory and install the dependencies:
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 2. Run the Mock API Server
 
-```sh
+Open a terminal in the frontend directory and run:
+
+```bash
+npm run api
+```
+
+The JSON Server will run at:
+
+```text
+http://localhost:3000
+```
+
+Available API resources:
+
+| Resource | Endpoint |
+|---|---|
+| Users | `/users` |
+| Opportunities | `/opportunities` |
+| Applications | `/applications` |
+| Saved Opportunities | `/savedOpportunities` |
+
+### 3. Run the Frontend
+
+Open a second terminal in the frontend directory and run:
+
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+The application will be available at:
 
-```sh
+```text
+http://localhost:5173
+```
+
+**Note:** Keep both terminals running while developing the application.
+
+## Main Application Routes
+
+| Route | Description |
+|---|---|
+| `/explore` | Browse and search opportunities |
+| `/opportunities/:id` | View details of a specific opportunity |
+| `/:pathMatch(.*)*` | Display the 404 Not Found page |
+
+## Main Features
+
+- **Opportunity Exploration:** Browse and search available opportunities.
+- **Opportunity Details:** View descriptions, eligibility requirements, benefits, funding, and deadlines.
+- **Application Submission:** Submit applications through a validated form.
+- **Form Validation:** Validate required fields, email format, and motivation length, with error messages displayed under each field.
+- **State Management:** Use Pinia to manage opportunity data, loading states, errors, and empty results.
+- **REST API Integration:** Retrieve and submit data through JSON Server.
+
+## Project Structure
+
+```text
+frontend/
+├── db.json
+├── public/
+├── src/
+│   ├── api/
+│   │   ├── http.ts
+│   │   ├── opportunities.ts
+│   │   ├── applications.ts
+│   │   └── users.ts
+│   ├── components/
+│   ├── data/
+│   ├── router/
+│   │   └── index.ts
+│   ├── stores/
+│   │   └── opportunity.ts
+│   ├── view/
+│   │   ├── ExplorePage.vue
+│   │   ├── OpportunitiesDetailPage.vue
+│   │   └── NotFoundView.vue
+│   ├── types.ts
+│   ├── App.vue
+│   └── main.ts
+├── package.json
+└── README.md
+```
+
+## Development Commands
+
+### Start Development Server
+
+```bash
+npm run dev
+```
+
+### Start Mock API Server
+
+```bash
+npm run api
+```
+
+### Type Check
+
+```bash
+npm run type-check
+```
+
+### Build for Production
+
+```bash
 npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```

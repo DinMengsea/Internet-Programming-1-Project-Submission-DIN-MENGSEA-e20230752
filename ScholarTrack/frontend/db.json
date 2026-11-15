@@ -1,0 +1,144 @@
+{
+  "users": [
+    {
+      "id": "user-001",
+      "fullName": "Demo Student",
+      "email": "student@example.com",
+      "role": "student"
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "opp-001",
+      "title": "MEXT Scholarship",
+      "provider": "Japanese Government",
+      "category": "Scholarship",
+      "country": "Japan",
+      "description": "A sample listing for students interested in pursuing higher education in Japan.",
+      "funding": "Tuition and living support",
+      "fundingType": "Fully Funded",
+      "deadline": "2027-05-15",
+      "studyLevel": [
+        "Undergraduate",
+        "Graduate"
+      ],
+      "fieldOfStudy": [
+        "Engineering",
+        "Computer Science",
+        "Science"
+      ],
+      "imageUrl": "/images/japan.jpg",
+      "eligibility": [
+        "Meet the applicable academic requirements",
+        "Meet the relevant age and nationality requirements",
+        "Submit the required application documents"
+      ],
+      "benefits": [
+        "Tuition support",
+        "Potential living allowance",
+        "Opportunity to study in Japan"
+      ]
+    },
+    {
+      "id": "opp-002",
+      "title": "Chevening Scholarship",
+      "provider": "UK Government",
+      "category": "Scholarship",
+      "country": "United Kingdom",
+      "description": "A sample listing for students exploring postgraduate study opportunities in the UK.",
+      "funding": "Tuition and living support",
+      "fundingType": "Fully Funded",
+      "deadline": "2027-11-01",
+      "studyLevel": [
+        "Graduate"
+      ],
+      "fieldOfStudy": [
+        "Business",
+        "Technology",
+        "Public Policy"
+      ],
+      "imageUrl": "/images/uk.jpg",
+      "eligibility": [
+        "Meet the applicable eligibility requirements",
+        "Meet the work experience requirements",
+        "Submit the required application documents"
+      ],
+      "benefits": [
+        "Tuition support",
+        "Living allowance",
+        "Academic and professional development"
+      ]
+    },
+    {
+      "id": "opp-003",
+      "title": "Student Innovation Challenge",
+      "provider": "ScholarTrack Demo",
+      "category": "Competition",
+      "country": "Cambodia",
+      "description": "A fictional competition for students developing innovative technology solutions.",
+      "funding": "Cash prizes and recognition",
+      "fundingType": "Award",
+      "deadline": "2027-03-20",
+      "studyLevel": [
+        "Undergraduate"
+      ],
+      "fieldOfStudy": [
+        "Computer Science",
+        "Data Science",
+        "Engineering"
+      ],
+      "imageUrl": "/images/innovation.jpg",
+      "eligibility": [
+        "Be a university student",
+        "Submit an original project proposal"
+      ],
+      "benefits": [
+        "Opportunity to win prizes",
+        "Project presentation experience",
+        "Networking opportunities"
+      ]
+    }
+  ],
+  "applications": [
+    {
+      "id": "app-001",
+      "userId": "user-001",
+      "opportunityId": "opp-001",
+      "studentName": "Demo Student",
+      "status": "Submitted",
+      "submittedAt": "2026-10-10",
+      "deadline": "2027-05-15"
+    },
+    {
+      "id": "app-002",
+      "userId": "user-001",
+      "opportunityId": "opp-002",
+      "studentName": "Demo Student",
+      "status": "Draft",
+      "submittedAt": null,
+      "deadline": "2027-11-01"
+    },
+    {
+      "id": "app-003",
+      "userId": "user-001",
+      "opportunityId": "opp-003",
+      "studentName": "Demo Student",
+      "status": "Under Review",
+      "submittedAt": "2026-10-20",
+      "deadline": "2027-03-20"
+    },
+    {
+      "id": "lOJ9R6lJcJ8",
+      "userId": "user-001",
+      "opportunityId": "opp-001",
+      "studentName": "s",
+      "email": "d@gmail.com",
+      "motivation": "dsadawfwfffAdsadawfwfffAdsadawfwfffAdsadawfwfffA",
+      "status": "Submitted",
+      "submittedAt": "2026-11-15",
+      "deadline": "2027-05-15"
+    }
+  ],
+  "savedOpportunities": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}

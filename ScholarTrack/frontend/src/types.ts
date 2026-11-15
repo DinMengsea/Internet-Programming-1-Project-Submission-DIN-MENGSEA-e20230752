@@ -32,8 +32,11 @@ export interface Opportunity {
 
 export interface Application {
   id: string
+  userId: string
   opportunityId: string
   studentName: string
+  email?: string
+  motivation?: string
   status: ApplicationStatus
   submittedAt: string | null
   deadline: string
@@ -43,6 +46,7 @@ export interface Student {
   id: string
   fullName: string
   email: string
+  role?: 'student' | 'admin'
 }
 
 export interface CategoryFilter {
